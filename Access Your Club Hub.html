@@ -1,0 +1,147 @@
+
+<!-- saved from url=(0111)file:///C:/Users/ranim/Downloads/Phase%205_Final%20Phase/Phase%205_Final%20Phase/Air%20Reservation%20Login.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Your Club Hub </title>
+    <style>
+        body {
+            width: 100%;
+    background:linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url('https://nu.edu.eg/sites/default/files/2022-05/inter_1_2.jpg') ;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+        }
+
+        h1 {
+            color: #1CA9C9;
+            text-align: center;
+            
+        }
+
+        .login-container {
+            width: 400px;
+    height: auto;
+    margin: auto;
+    color: #fff;
+    position: relative;
+    background:linear-gradient(to top, rgba(50, 50, 50, 0.4) 40%, rgba(0, 0, 0, 0.4) 90%); /* Set the form background color to a lighter shade of blue */
+      padding: 10px;
+      border-radius: 10px;
+           
+        }
+
+        .login-section {
+            width: 100%;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        h2 {
+            color: #1CA9C9;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #1CA9C9;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border : 1px solid whitesmoke;
+    background-color: transparent;
+    padding: 8px 1px;
+    color: whitesmoke;
+        }
+
+        button {
+            width: 240px;
+    height: 40px;
+    background: #1CA9C9;
+    border: none;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 15px;
+    border-radius: 80px;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.1s ease;
+    text-align: center;
+        }
+
+        
+
+    </style>
+</head>
+<body>
+
+    <h1>Access Your Club Hub</h1>
+
+    <div class="login-container">
+        <div class="login-section">
+            <h2>Login as Admin</h2>
+            <form action="file:///C:\Users\ranim\Documents\sw project ranim" method="post" target="_blank">
+                <label for="Admin-Username">Username:</label>
+                <input type="text" id="Admin-Username" name="Admin-Username" required="">
+                <label for="password_user">Password:</label>
+                <input type="password" id="password_user" name="password_user" required="">
+                <label for="user_id">Admin ID:</label>
+                <input type="text" id="user_id" name="user_id" required="">
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+        <div class="login-section">
+            <h2>Login as Student</h2>
+            <form action="file:///C:\Users\ranim\Documents\sw project ranim" method="post" target="_blank">
+                <label for="NU_Account">Username:</label>
+                <input type="text" id="NU_Account" name="NU_Account" required="">
+                <label for="password_student">Password:</label>
+                <input type="password" id="password_student" name="password_student" required="">
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+<script>
+    function saveInputs(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Get input values
+        var username = document.getElementById("username_student").value;
+        var password = document.getElementById("password_student").value;
+
+        // Create CSV content
+        var csvContent = "Username,Password\n" + username + "," + password;
+
+        // Create a Blob object with the CSV content
+        var blob = new Blob([csvContent], { type: "text/csv;charset=utf-8" });
+
+        // Create a temporary URL for the Blob object
+        var url = URL.createObjectURL(blob);
+
+        // Create a temporary anchor element
+        var anchor = document.createElement("a");
+        anchor.setAttribute("href", url);
+        anchor.setAttribute("download", "saved_inputs.csv");
+        anchor.style.display = "none";
+
+        // Add the anchor to the document
+        document.body.appendChild(anchor);
+
+        // Trigger the click event to prompt the download
+        anchor.click();
+
+        // Clean up
+        document.body.removeChild(anchor);
+        URL.revokeObjectURL(url);
+    }
+</script>
+
+
+</body></html>
