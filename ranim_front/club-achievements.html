@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Club Achievements</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            text-align: center;
+            color: #0077b6;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Achievements</h1>
+        <ul id="achievementList"></ul>
+    </div>
+
+    <script>
+        async function fetchAchievements() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const club = urlParams.get("club");
+
+            if (!club) {
+                alert("No club selected!");
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:3000/api/achievements?club=${club}`);
+                if (!response.ok) {
+                    throw new Error("Club not found");
+                }
+                const data = await response.json();
+                const achievementList = document.getElementById("achievementList");
+
+                data.forEach(achievement => {
+                    const li = document.createElement("li");
+                    li.textContent = `${achievement.name} - ${achievement.date}`;
+                    achievementList.appendChild(li);
+                });
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+
+        fetchAchievements();
+    </script>
+</body>
+</html>
