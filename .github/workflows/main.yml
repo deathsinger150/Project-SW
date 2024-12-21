@@ -1,4 +1,4 @@
-name: Set DJANGO_SETTINGS_MODULE environment variable
+name: Python CI/CD for SW Project Mohamed
 
 on:
   push:
@@ -27,7 +27,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Set DJANGO_SETTINGS_MODULE environment variable
-        run: echo "DJANGO_SETTINGS_MODULE=Project-SW.my_project.settings" >> $GITHUB_ENV
+        run: echo "DJANGO_SETTINGS_MODULE=my_project.settings" >> $GITHUB_ENV  # Correct module path
 
       - name: Run Django tests
         run: |
