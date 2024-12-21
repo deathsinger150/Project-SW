@@ -1,0 +1,131 @@
+<!-- GDG Sessions Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDG Sessions</title>
+    <style>
+        body {
+            background-image: url("https://nu.edu.eg/sites/default/files/inline-images/history2.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            text-align: center;
+        }
+        .form-container select, .form-container input[type='checkbox'] {
+            width: 100%;
+            margin: 10px 0;
+        }
+        .form-container label {
+            display: block;
+            margin: 10px 0;
+        }
+        .form-container button {
+            background-color: #0073e6;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .form-container button:hover {
+            background-color: #005bb5;
+        }
+        .time-slots {
+            display: none;
+            text-align: left;
+        }
+    </style>
+    <script>
+        function showGDGTimeSlots() {
+            const session = document.getElementById('gdg-session-select').value;
+            const sessionBox = document.getElementById('session-box');
+
+            sessionBox.innerHTML = ''; // Clear previous slots
+
+            let slots = [];
+            if (session === 'Web Development') {
+                slots = [
+                    'Monday 10:00 to 12:00',
+                    'Tuesday 2:30 to 4:30',
+                    'Wednesday 6:00 to 8:00'
+                ];
+            } else if (session === 'Mobile Applications') {
+                slots = [
+                    'Sunday 10:30 to 12:30',
+                    'Monday 4:00 to 6:00',
+                    'Wednesday 2:30 to 4:30'
+                ];
+            } else if (session === 'Game Development') {
+                slots = [
+                    'Tuesday 10:30 to 12:30',
+                    'Wednesday 4:30 to 6:30',
+                    'Thursday 6:00 to 8:00'
+                ];
+            } else if (session === 'AI') {
+                slots = [
+                    'Monday 2:30 to 4:30',
+                    'Tuesday 4:30 to 6:30',
+                    'Thursday 10:00 to 12:00'
+                ];
+            } else {
+                alert('Please select a session.');
+                return;
+            }
+
+            // Generate checkboxes for selected session slots
+            slots.forEach(slot => {
+                const label = document.createElement('label');
+                label.innerHTML = `<input type="checkbox" value="${slot}"> ${slot}`;
+                sessionBox.appendChild(label);
+            });
+
+            sessionBox.style.display = 'block';
+        }
+
+        function submitSelections() {
+            const selectedSlots = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
+                .map(input => input.value);
+
+            if (selectedSlots.length !== 2) {
+                alert('Please select exactly two time slots.');
+                return;
+            }
+
+            alert(`Your selections (${selectedSlots.join(', ')}) have been successfully submitted!`);
+            window.location.href = "{% url 'student' %}";
+        }
+    </script>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Choose GDG Session</h2>
+        <select id="gdg-session-select" onchange="showGDGTimeSlots()">
+            <option value="">-- Select a Session --</option>
+            <option value="Web Development">Web Development Sessions</option>
+            <option value="Mobile Applications">Mobile Application Sessions</option>
+            <option value="Game Development">Game Development Sessions</option>
+            <option value="AI">AI Sessions</option>
+        </select>
+
+        <div id="session-box" class="time-slots"></div>
+
+        <button onclick="submitSelections()">Submit</button>
+    </div>
+</body>
+</html>

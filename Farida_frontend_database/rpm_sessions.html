@@ -1,0 +1,111 @@
+<!-- RPM Sessions Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPM Sessions</title>
+    <style>
+        body {
+            background-image: url("https://nu.edu.eg/sites/default/files/inline-images/history2.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            text-align: center;
+        }
+        .form-container select, .form-container input[type='checkbox'] {
+            width: 100%;
+            margin: 10px 0;
+        }
+        .form-container label {
+            display: block;
+            margin: 10px 0;
+        }
+        .form-container button {
+            background-color: #0073e6;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .form-container button:hover {
+            background-color: #005bb5;
+        }
+        .time-slots {
+            display: none;
+            text-align: left;
+        }
+    </style>
+    <script>
+        function showRPMTimeSlots() {
+            const session = document.getElementById('rpm-session-select').value;
+            const roboticsSlots = document.getElementById('robotics-slots');
+            const mechanicalSlots = document.getElementById('mechanical-slots');
+
+            roboticsSlots.style.display = 'none';
+            mechanicalSlots.style.display = 'none';
+
+            if (session === 'Robotics') {
+                roboticsSlots.style.display = 'block';
+            } else if (session === 'Mechanical') {
+                mechanicalSlots.style.display = 'block';
+            } else {
+                alert('Please select a session.');
+            }
+        }
+
+        function submitSelections() {
+            const selectedSlots = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
+                .map(input => input.value);
+
+            if (selectedSlots.length !== 2) {
+                alert('Please select exactly two time slots.');
+                return;
+            }
+
+            alert(`Your selections (${selectedSlots.join(', ')}) have been successfully submitted!`);
+            window.location.href = "{% url 'student' %}";
+        }
+    </script>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Choose RPM Session</h2>
+        <select id="rpm-session-select" onchange="showRPMTimeSlots()">
+            <option value="">-- Select a Session --</option>
+            <option value="Robotics">Robotics Sessions</option>
+            <option value="Mechanical">Mechanical Sessions</option>
+        </select>
+
+        <div id="robotics-slots" class="time-slots">
+            <label><input type="checkbox" value="Monday 2:30 to 4:30"> Monday 2:30 to 4:30</label>
+            <label><input type="checkbox" value="Monday 6:30 to 8:30"> Monday 6:30 to 8:30</label>
+            <label><input type="checkbox" value="Wednesday 12:30 to 2:30"> Wednesday 12:30 to 2:30</label>
+        </div>
+
+        <div id="mechanical-slots" class="time-slots">
+            <label><input type="checkbox" value="Sunday 4:30 to 6:30"> Sunday 4:30 to 6:30</label>
+            <label><input type="checkbox" value="Monday 12:30 to 2:30"> Monday 12:30 to 2:30</label>
+            <label><input type="checkbox" value="Monday 4:30 to 6:30"> Monday 4:30 to 6:30</label>
+        </div>
+
+        <button onclick="submitSelections()">Submit</button>
+    </div>
+</body>
+</html>
+
