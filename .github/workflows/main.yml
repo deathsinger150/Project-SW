@@ -29,4 +29,4 @@ jobs:
 
       - name: Run Django tests
         run: |
-           python manage.py test  # Run Django tests
+           python Test.py test  # Run Django tests
