@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Academic Achievements</title>
+    <link rel="stylesheet" href="test1.css">
+    <style>
+        body {
+            background-image: url('https://nu.edu.eg/sites/default/files/2024-06/whatsapp_image_2024-06-25_at_1.33.17_pm.jpeg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Full viewport height */
+        }
+
+        .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #1CA9C9; /* Blue background */
+            border-radius: 5px; /* Rounded edges */
+            padding: 5px 10px; /* Smaller background padding */
+            color: white;
+            font-weight: bold;
+            font-size: 18px; /* Font size stays the same */
+            width: 100px; /* Fixed width for smaller background */
+            height: 40px; /* Fixed height for smaller background */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .icon::before {
+            content: "◀"; /* Arrow head */
+            font-size: 16px; /* Reduced arrow size */
+            margin-right: 5px; /* Reduced space between arrow and text */
+        }
+
+        .icon:hover {
+            background-color: #005bb5; /* Darker blue on hover */
+            transform: scale(1.05); /* Slight zoom effect */
+        }
+
+        .frame {
+            text-align: center;
+            margin: 20px 0;
+            background: rgba(0, 0, 0, 0.6); /* Consistent black background */
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%; /* Consistent width for all frames */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.8); /* Consistent shadow for frames */
+        }
+
+        .admin-tasks {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .admin-tasks button, textarea {
+            background-color: #14d1d1;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 80%; /* Ensure buttons span full width of container */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .admin-tasks button:hover {
+            background-color: #ffffff;
+            color: #14d1d1;
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        textarea {
+            background-color: #425d75; /* Consistent with buttons */
+            color: #ffffff;
+            border: 1px solid #080808;
+            border-radius: 5px;
+            padding: 10px;
+            width: 80%; /* Match the width of the buttons */
+        }
+    </style>
+</head>
+<body>
+    <div class="icon" onclick="location.href='test1.html'">
+        NUSC
+    </div>
+
+    <!-- Frame 1: Manage Academic Achievements -->
+    <div class="frame">
+        <h1>Manage Academic Achievements</h1>
+    </div>
+
+    <!-- Frame 2: Input form and buttons -->
+    <div class="frame admin-tasks">
+        <textarea rows="5" placeholder="Enter Achievement details"></textarea>
+        <button onclick="addAchievement()">Submit Form</button>
+        <textarea rows="5" placeholder="Enter Achievement Date"></textarea>
+        <button onclick="PostDate()">Achievement Date</button>
+        <button onclick="goBackToAdmin()">Back to Admin Page</button>
+    </div>
+
+    <script>
+        function addAchievement() {
+            alert("Achievement added!");
+            window.location.href = "{% url 'admin_dashboard' %}";
+        }
+
+        function PostDate() {
+            alert("Date Posted!");
+            window.location.href = "{% url 'admin_dashboard' %}";
+        }
+
+        function goBackToAdmin() {
+            window.location.href = "{% url 'admin_dashboard' %}";
+        }
+    </script>
+</body>
+</html>
