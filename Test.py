@@ -11,7 +11,7 @@ class LoginTestCase(TestCase):
     def setUpTestData(cls):
         """Set up initial data for the tests."""
         # Create users for testing
-        cls.admin_user = User.objects.create_user(username='admin_user', password='admin_pass')
+        cls.admin_user = User.objects.create_user(username='Seif Kassab', password='admin_pass')
         cls.student_user = User.objects.create_user(username='student_user', password='student_pass')
         cls.non_admin_user = User.objects.create_user(username='non_admin', password='non_admin_pass')
         cls.non_student_user = User.objects.create_user(username='non_student', password='non_student_pass')
