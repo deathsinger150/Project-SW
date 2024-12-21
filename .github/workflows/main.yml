@@ -21,9 +21,6 @@ jobs:
         with:
           python-version: '3.8'
 
-      - name: Run Django migrations (if applicable)
-        run: |
-          python manage.py migrate
 
       - name: Run tests
         run: |
