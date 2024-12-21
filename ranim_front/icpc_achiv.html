@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICPC Achievements</title>
+    <style>
+        /* Background Styling */
+        body {
+            background-color: rgb(140, 140, 147); /* Blue background color */
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: rgba(0, 0, 0, 0.7); /* Transparent background */
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 80%;
+        }
+
+        /* Back to Home Button */
+        .back-button {
+            display: flex;
+            align-items: center;
+            margin: 10px 20px;
+            font-size: 1rem;
+            text-decoration: none;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.7); /* Transparent button background */
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            width: fit-content;
+        }
+
+        .back-button:hover {
+            background-color: #ffcc00;
+            color: black;
+        }
+
+        .back-button img {
+            width: 20px;
+            margin-right: 8px;
+        }
+
+        /* Event Container */
+        .event-container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        /* Event Card Styling */
+        .event-card {
+            background-color: rgba(0, 0, 0, 0.7); /* Transparent background */
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Darker shadow for better contrast */
+            transition: transform 0.3s, box-shadow 0.3s;
+            color: white; /* Text color for transparent cards */
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Event Header Styling */
+        .event-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .profile-pic {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+            border: 2px solid #ffcc00;
+        }
+
+        .club-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .club-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffcc00;
+        }
+
+        .publish-date, .time-elapsed {
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+
+        /* Event Body Styling */
+        .event-body img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .event-body h2 {
+            font-size: 1.8rem;
+            color: #ffcc00;
+            text-align: center;
+        }
+
+        .event-body p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-top: 10px;
+            color: #eee;
+            text-align: justify;
+        }
+
+        /* React Section Styling */
+        .react-section {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+        }
+
+        .react-button {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: #ffcc00;
+            font-size: 1rem;
+            transition: color 0.3s;
+            margin-bottom: 10px;
+        }
+
+        .react-button:hover {
+            color: #ffcc00;
+        }
+
+        .react-button img {
+            width: 20px;
+            margin-right: 8px;
+        }
+
+        .comment-section input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .comment-list {
+            margin-top: 10px;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .comment-list li {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: rgba(0, 0, 0, 0.7); /* Transparent footer */
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 1rem;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="{% url 'student' %}" class="back-button">
+    <img src="https://cdn-icons-png.flaticon.com/512/860/860790.png" alt="Back Icon">
+    Back to Home
+</a>
+
+<header>ICPC Achievements</header>
+
+<div class="event-container">
+
+    <!-- ICPC Achievement 1 -->
+    <div class="event-card">
+        <div class="event-header">
+            <img class="profile-pic" src="https://nu.edu.eg/sites/default/files/2022-05/nuicpc.png" alt="ICPC Club">
+            <div class="club-info">
+                <span class="club-name">ICPC NU</span>
+                <span class="publish-date">Published on: October 12, 2024</span>
+                <span class="time-elapsed">Since: 2 days ago</span>
+            </div>
+        </div>
+        <div class="event-body">
+            <h2>National Champion Award</h2>
+            <p>The ICPC NU team won the national championship, showcasing exceptional programming and problem-solving skills. The team competed against over 50 other universities and came out on top!</p>
+            <img src="	https://www.nu.edu.eg/sites/default/files/2023-07/whatsapp_image_2023-07-18_at_4.17.53_pm_3.jpeg" alt="ICPC National Champion Award">
+        </div>
+        <div class="react-section">
+            <div class="react-button" onclick="toggleLike(this)">
+                <img src="https://cdn-icons-png.flaticon.com/512/889/889140.png" alt="Like" class="like-icon">
+                <span class="like-text">Like</span>
+                <span class="like-count" style="margin-left: 5px;">0</span>
+            </div>
+            <div class="comment-section">
+                <input type="text" placeholder="Write a comment..." onkeydown="addComment(event, this)">
+                <ul class="comment-list"></ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ICPC Achievement 2 -->
+    <div class="event-card">
+        <div class="event-header">
+            <img class="profile-pic" src="https://nu.edu.eg/sites/default/files/2022-05/nuicpc.png" alt="ICPC Club">
+            <div class="club-info">
+                <span class="club-name">ICPC NU</span>
+                <span class="publish-date">Published on: September 20, 2024</span>
+                <span class="time-elapsed">Since: 30 days ago</span>
+            </div>
+        </div>
+        <div class="event-body">
+            <h2>International Participation</h2>
+            <p>WINNERS 🥉
+                AUK students won 3rd place in the Kuwait Collegiate Programming Contest (KCPC)!
+                The students used a single computer to solve as many programming problems as possible within 5 hours💪🏻</p>
+            <img src="https://www.nu.edu.eg/sites/default/files/2023-07/whatsapp_image_2023-07-18_at_4.17.53_pm_4.jpeg" alt="ICPC">
+        </div>
+        <div class="react-section">
+            <div class="react-button" onclick="toggleLike(this)">
+                <img src="https://cdn-icons-png.flaticon.com/512/889/889140.png" alt="Like" class="like-icon">
+                <span class="like-text">Like</span>
+                <span class="like-count" style="margin-left: 5px;">0</span>
+            </div>
+            <div class="comment-section">
+                <input type="text" placeholder="Write a comment..." onkeydown="addComment(event, this)">
+                <ul class="comment-list"></ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer>Copyrights © 2024 ICPC NU. All Rights Reserved.</footer>
+
+<script>
+    function toggleLike(button) {
+        const likeIcon = button.querySelector('.like-icon');
+        const likeText = button.querySelector('.like-text');
+        const likeCount = button.querySelector('.like-count');
+        let count = parseInt(likeCount.textContent);
+
+        if (likeText.textContent === 'Like') {
+            likeText.textContent = 'Unlike';
+            likeIcon.src = 'https://cdn-icons-png.flaticon.com/512/2107/2107845.png';
+            likeCount.textContent = count + 1;
+        } else {
+            likeText.textContent = 'Like';
+            likeIcon.src = 'https://cdn-icons-png.flaticon.com/512/889/889140.png';
+            likeCount.textContent = count - 1;
+        }
+    }
+
+    function addComment(event, input) {
+        if (event.key === 'Enter' && input.value.trim() !== '') {
+            const commentList = input.nextElementSibling;
+            const newComment = document.createElement('li');
+            newComment.textContent = input.value;
+            commentList.appendChild(newComment);
+            input.value = '';
+        }
+    }
+</script>
+
+</body>
+</html>
