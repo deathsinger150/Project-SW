@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Handle Collaborations</title>
+    <link rel="stylesheet" href="test1.css">
+    <style>
+        body {
+            background-image: url('https://www.universitiesegypt.com/ImageHandler.ashx?Id=14246&SS=28c56089438f0b84084906ae41aa1839');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Full viewport height */
+        }
+
+        .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #1CA9C9; /* Blue background */
+            border-radius: 5px; /* Rounded edges */
+            padding: 5px 10px; /* Smaller background padding */
+            color: white;
+            font-weight: bold;
+            font-size: 18px; /* Font size stays the same */
+            width: 100px; /* Fixed width for smaller background */
+            height: 40px; /* Fixed height for smaller background */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .icon::before {
+            content: "◀"; /* Arrow head */
+            font-size: 16px; /* Reduced arrow size */
+            margin-right: 5px; /* Reduced space between arrow and text */
+        }
+
+        .icon:hover {
+            background-color: #005bb5; /* Darker blue on hover */
+            transform: scale(1.05); /* Slight zoom effect */
+        }
+
+        .frame {
+            text-align: center;
+            margin: 20px 0;
+            background: rgba(0, 0, 0, 0.6); /* Consistent black background */
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%; /* Consistent width for all frames */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.8); /* Consistent shadow for frames */
+        }
+
+        .textarea-container textarea {
+            background-color: #425d75; /* Consistent blue for textarea */
+            color: #ffffff;
+            border: 1px solid #080808;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            width: 90%; /* Full width textarea */
+        }
+
+        .button-container button {
+            background-color: #14d1d1;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 10px 0;
+            width: 90%; /* Full width buttons */
+        }
+
+        .button-container button:hover {
+            background-color: #ffffff;
+            color: #14d1d1;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="icon" onclick="location.href='test1.html'">
+        NUSC
+    </div>
+
+    <!-- Frame 1: Handle Collaborations Title -->
+    <div class="frame">
+        <h1>Handle Collaborations</h1>
+    </div>
+
+    <!-- Frame 2: Collaboration Details -->
+    <div class="frame">
+        <div class="textarea-container">
+            <textarea rows="5" placeholder="Enter collaboration details"></textarea>
+        </div>
+        <div class="button-container">
+            <button onclick="submitCollaboration()">Submit Form</button>
+            <button onclick="goBackToAdmin()">Back to Admin Page</button>
+        </div>
+    </div>
+
+    <script>
+        function submitCollaboration() {
+            alert("Collaboration details submitted!");
+            window.location.href = "{% url 'admin_dashboard' %}";
+        }
+
+        function goBackToAdmin() {
+            window.location.href = "{% url 'admin_dashboard' %}";
+        }
+    </script>
+</body>
+</html>
