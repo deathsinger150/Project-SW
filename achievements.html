@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Academic Achievements</title>
+    <style>
+        body {
+            background-image: url('https://nu.edu.eg/sites/default/files/2024-06/whatsapp_image_2024-06-25_at_1.33.17_pm.jpeg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 50px;
+            border-radius: 15px;
+            width: 60%;
+            max-width: 600px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        .form-container h1 {
+            color: #14d1d1;
+            margin-bottom: 30px;
+        }
+        .button-group button {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            background-color: #14d1d1;
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+            font-size: 18px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        .button-group button:hover {
+            background-color: #0fa3a3;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Choose a Club</h1>
+        <div class="button-group">
+            <button onclick="location.href='{% url 'icpc_achievements' %}'">ICPC Achievements</button>
+            <button onclick="location.href='{% url 'rpm_achievements' %}'">RPM Achievements</button>
+            <button onclick="location.href='{% url 'gdg_achievements' %}'">GDG Achievements</button>
+        </div>
+    </div>
+</body>
+</html>
