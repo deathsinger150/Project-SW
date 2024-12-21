@@ -3,10 +3,10 @@ name: Python CI/CD for SW Project Mohamed
 on:
   push:
     branches:
-      - main  # Trigger the workflow when pushing to the 'main' branch
+      - main
   pull_request:
     branches:
-      - main  # Trigger the workflow on pull requests targeting 'main'
+      - main
 
 jobs:
   build:
@@ -19,32 +19,30 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
-          python-version: '3.8'  # Set the Python version according to your project needs
+          python-version: '3.8'
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt  # Install dependencies from requirements.txt
+          pip install -r my_project/requirements.txt  # Update this line if your requirements.txt is in a subfolder
 
       - name: Run Django migrations (if applicable)
         run: |
-          python manage.py migrate  # Run migrations for Django (if you use Django)
+          python manage.py migrate
 
       - name: Run tests
         run: |
-          python manage.py test  # Run tests in Django, adjust if using a different testing framework
+          python manage.py test
 
       - name: Collect static files (if applicable)
         run: |
-          python manage.py collectstatic --noinput  # Collect static files for Django (if applicable)
+          python manage.py collectstatic --noinput
 
       - name: Run Python script (if needed)
         run: |
-          python hello.py  # Replace with the Python script you want to run, e.g., 'manage.py'
+          python hello.py
 
       - name: Deploy to production (if applicable)
-        if: github.ref == 'refs/heads/main'  # Only deploy from the main branch
+        if: github.ref == 'refs/heads/main'
         run: |
-          # Add deployment steps here, e.g., upload to server, cloud, etc.
           echo "Deploying to production..."
-          # Example: ssh username@host 'bash deploy_script.sh'
