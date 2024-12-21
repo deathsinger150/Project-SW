@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Events</title>
+    <link rel="stylesheet" href="test1.css">
+    <style>
+        body {
+            background-image: url('https://th.bing.com/th/id/R.7927dfc04d54eb61b92dd9fd76515b94?rik=JtfGPOh39DJX2A&riu=http%3a%2f%2fcegman.com%2fwp-content%2fuploads%2f2020%2f05%2fDSC_0085.jpg&ehk=slOWBocMCQ%2bsZulN2CAEywCvRbKwMNVJmzEE93klMSc%3d&risl=&pid=ImgRaw&r=0');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #1CA9C9;
+            border-radius: 5px;
+            padding: 5px 10px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            width: 100px;
+            height: 40px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .icon::before {
+            content: "◀";
+            font-size: 16px;
+            margin-right: 5px;
+        }
+
+        .icon:hover {
+            background-color: #005bb5;
+            transform: scale(1.05);
+        }
+
+        .frame {
+            text-align: center;
+            margin: 20px 0;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+        }
+
+        .admin-tasks button {
+            background-color: #14d1d1;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 90%;
+        }
+
+        .admin-tasks button:hover {
+            background-color: #ffffff;
+            color: #14d1d1;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="icon" onclick="location.href='{% url 'admin_dashboard' %}'">
+        NUSC
+    </div>
+
+    <!-- Frame 1: Manage Events Title -->
+    <div class="frame">
+        <h1>Manage Events</h1>
+    </div>
+
+    <!-- Frame 2: Admin Tasks -->
+    <div class="frame admin-tasks">
+        <button onclick="window.location.href = '{% url 'create_event' %}'">Create Event</button>
+        <button onclick="updateEvent()">Update Event</button>
+        <button onclick="goBackToAdmin()">Back to Admin Page</button>
+    </div>
+
+    <script>
+        function updateEvent() {
+            const eventID = prompt("Please enter the ID of the event to update:");
+            if (eventID) {
+                alert(`Redirecting to update event with ID: ${eventID}`);
+                // Add URL for the update page here
+            } else {
+                alert("No ID entered. Operation canceled.");
+            }
+        }
+
+        function goBackToAdmin() {
+            window.location.href = "{% url 'admin_dashboard' %}";
+        }
+    </script>
+</body>
+</html>
