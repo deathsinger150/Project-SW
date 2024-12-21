@@ -1,1 +1,91 @@
-"Placeholder content" 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Accept New Member</title>
+    <style>
+        body {
+            background-image: url('https://th.bing.com/th/id/R.fd2069478b3e37b1396fab12c1b30af3?rik=0kBLQzbtpto46w&pid=ImgRaw&r=0');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .form-container {
+            margin: 50px auto;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            width: 50%;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+            text-align: center;
+        }
+
+        .form-container input, .form-container select {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .form-container button {
+            background-color: #14d1d1;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .form-container button:hover {
+            background-color: #ffffff;
+            color: #14d1d1;
+        }
+
+        .back-btn {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Accept New Member</h2>
+        <form>
+            <input type="text" id="studentName" placeholder="Name of the Student" required>
+            <input type="text" id="studentID" placeholder="Student ID" required>
+            <input type="text" id="joinedClubs" placeholder="Joined Clubs" required>
+            <input type="email" id="studentEmail" placeholder="Student Email" required>
+            <select id="studentRole">
+                <option value="Board">Board</option>
+                <option value="Member">Member</option>
+            </select>
+            <button type="button" onclick="submitForm()">Submit</button>
+            <button type="button" class="back-btn" onclick="goBack()">Cancel</button>
+        </form>
+    </div>
+
+    <script>
+        function submitForm() {
+            const name = document.getElementById('studentName').value;
+            const id = document.getElementById('studentID').value;
+            const clubs = document.getElementById('joinedClubs').value;
+            const email = document.getElementById('studentEmail').value;
+            const role = document.getElementById('studentRole').value;
+
+            if (name && id && clubs && email && role) {
+                alert(`New Member Accepted!`);
+                window.location.href = "{% url 'admin_dashboard' %}"; // Redirect to Admin Page
+            } else {
+                alert("Please fill in all fields!");
+            }
+        }
+
+        function goBack() {
+            window.location.href = "{% url 'manage_club_members' %}"; // Redirect to Manage Club Members Page
+        }
+    </script>
+</body>
+</html>
