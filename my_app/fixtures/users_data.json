@@ -1,0 +1,52 @@
+[
+    {
+        "model": "my_app.user", 
+        "pk": 1,
+        "fields": {
+            "user_name": "Mohamed Hossam",
+            "Users_password": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+            "Users_role": "Admin",
+            "email": "m.hossam2201@nu.edu.eg"
+        }
+    },
+    {
+        "model": "my_app.user",
+        "pk": 2,
+        "fields": {
+            "user_name": "Seif Kassab",
+            "Users_password": "e0e6097a6f8af07daf5fc7244336ba37133713a8fc7345c36d667dfa513fabaa",
+            "Users_role": "Student",
+            "email": "s.kassab2250@nu.edu.eg"
+        }
+    },
+    {
+        "model": "my_app.user",
+        "pk": 3,
+        "fields": {
+            "user_name": "Ranim Hisham",
+            "Users_password": "89e01536ac207279409d4de1e5253e01f4a1769e696db0d6062ca9b8f56767c8",
+            "Users_role": "ClubBoardMember",
+            "email": "r.hisham2210@nu.edu.eg"
+        }
+    },
+    {
+        "model": "my_app.user",
+        "pk": 4,
+        "fields": {
+            "user_name": "Omar Mohamed",
+            "Users_password": "c6ba91b90d922e159893f46c387e5dc1b3dc5c101a5a4522f03b987177a24a91",
+            "Users_role": "ClubMember",
+            "email": "o.mohamed2230@nu.edu.eg"
+        }
+    },
+    {
+        "model": "my_app.user",
+        "pk": 5,
+        "fields": {
+            "user_name": "Farida Amr",
+            "Users_password": "5efc2b017da4f7736d192a74dde5891369e0685d4d38f2a455b6fcdab282df9c",
+            "Users_role": "Admin",
+            "email": "f.amr2237@nu.edu.eg"
+        }
+    }
+]
