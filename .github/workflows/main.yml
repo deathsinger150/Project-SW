@@ -19,17 +19,22 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
-          python-version: '3.8'
-
+          python-version: '3.8'  # Set the Python version according to your project needs
 
       - name: Run tests
         run: |
-          python manage.py test
+          python manage.py test  # Run tests in Django
 
       - name: Collect static files (if applicable)
         run: |
-          python manage.py collectstatic --noinput
+          python manage.py collectstatic --noinput  # Collect static files for Django (if applicable)
 
       - name: Run Python script (if needed)
         run: |
-          python hello.py  # Replace this with your own script
+          python hello.py  # Replace with the Python script you want to run, e.g., 'manage.py'
+
+      - name: Deploy to production (if applicable)
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "Deploying to production..."
+          # Example: ssh username@host 'bash deploy_script.sh'
