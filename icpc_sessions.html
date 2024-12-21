@@ -1,0 +1,121 @@
+<!-- ICPC Sessions Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICPC Sessions</title>
+    <style>
+        body {
+            background-image: url("https://nu.edu.eg/sites/default/files/inline-images/history2.jpg ");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            text-align: center;
+        }
+        .form-container select, .form-container input[type='checkbox'] {
+            width: 100%;
+            margin: 10px 0;
+        }
+        .form-container label {
+            display: block;
+            margin: 10px 0;
+        }
+        .form-container button {
+            background-color: #0073e6;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .form-container button:hover {
+            background-color: #005bb5;
+        }
+        .time-slots {
+            display: none;
+            text-align: left;
+        }
+    </style>
+    <script>
+        function showICPCTimeSlots() {
+            const session = document.getElementById('icpc-session-select').value;
+            const pythonSlots = document.getElementById('python-slots');
+            const cppSlots = document.getElementById('cpp-slots');
+            const javaSlots = document.getElementById('java-slots');
+
+            pythonSlots.style.display = 'none';
+            cppSlots.style.display = 'none';
+            javaSlots.style.display = 'none';
+
+            if (session === 'Python') {
+                pythonSlots.style.display = 'block';
+            } else if (session === 'C++') {
+                cppSlots.style.display = 'block';
+            } else if (session === 'Java') {
+                javaSlots.style.display = 'block';
+            } else {
+                alert('Please select a session.');
+            }
+        }
+
+        function submitSelections() {
+            const selectedSlots = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
+                .map(input => input.value);
+
+            if (selectedSlots.length !== 2) {
+                alert('Please select exactly two time slots.');
+                return;
+            }
+
+            alert(`Your selections (${selectedSlots.join(', ')}) have been successfully submitted!`);
+            window.location.href = "{% url 'student' %}";
+        }
+    </script>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Choose ICPC Session</h2>
+        <select id="icpc-session-select" onchange="showICPCTimeSlots()">
+            <option value="">-- Select a Session --</option>
+            <option value="Python">Python Sessions</option>
+            <option value="C++">C++ Sessions</option>
+            <option value="Java">Java Sessions</option>
+        </select>
+
+        <div id="python-slots" class="time-slots">
+            <label><input type="checkbox" value="Tuesday 10:30 to 12:30"> Tuesday 10:30 to 12:30</label>
+            <label><input type="checkbox" value="Thursday 2:30 to 4:30"> Thursday 2:30 to 4:30</label>
+            <label><input type="checkbox" value="Monday 6:00 to 8:00"> Friday 6:00 to 8:00</label>
+        </div>
+
+        <div id="cpp-slots" class="time-slots">
+            <label><input type="checkbox" value="Monday 8:30 to 10:30"> Monday 8:30 to 10:30</label>
+            <label><input type="checkbox" value="Wednesday 4:00 to 6:00"> Wednesday 4:00 to 6:00</label>
+            <label><input type="checkbox" value="Saturday 10:30 to 12:30"> Saturday 10:30 to 12:30</label>
+        </div>
+
+        <div id="java-slots" class="time-slots">
+            <label><input type="checkbox" value="Tuesday 4:30 to 6:30"> Tuesday 4:30 to 6:30</label>
+            <label><input type="checkbox" value="Thursday 10:00 to 12:00"> Thursday 10:00 to 12:00</label>
+            <label><input type="checkbox" value="Sunday 2:30 to 4:30"> Sunday 2:30 to 4:30</label>
+        </div>
+
+        <button onclick="submitSelections()">Submit</button>
+    </div>
+</body>
+</html>

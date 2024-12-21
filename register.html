@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register in Clubs</title>
+    <style>
+        body {
+            background-image: url('https://nu.edu.eg/sites/default/files/2024-06/whatsapp_image_2024-06-25_at_1.33.17_pm.jpeg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 50px;
+            border-radius: 15px;
+            width: 60%;
+            max-width: 600px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        .form-container h1 {
+            text-align: center;
+            color: #14d1d1;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #14d1d1;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+        }
+        .form-group .error {
+            color: red;
+            font-size: 14px;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 5px;
+            display: none;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 15px;
+            background-color: #14d1d1;
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #0fa3a3;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Register in Clubs</h1>
+        <form id="register-form">
+            <div class="form-group">
+                <label for="student-name">Student Name:</label>
+                <input type="text" id="student-name" name="student-name">
+                <span class="error" id="name-error">Please enter your name. Names should not contain numbers.</span>
+            </div>
+            <div class="form-group">
+                <label for="student-id">Student ID:</label>
+                <input type="text" id="student-id" name="student-id">
+                <span class="error" id="id-error">Please enter your student ID. IDs should only contain numbers.</span>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+                <span class="error" id="email-error">Please enter your email.</span>
+            </div>
+            <div class="form-group">
+                <label for="club">Club:</label>
+                <select id="club" name="club">
+                    <option value="">Select a club</option>
+                    <option value="rpm">RPM Club</option>
+                    <option value="icpc">ICPC Club</option>
+                    <option value="gdg">GDG Club</option>
+                </select>
+                <span class="error" id="club-error">Please select a club.</span>
+            </div>
+            <div class="form-group">
+                <label for="committee">Committee:</label>
+                <select id="committee" name="committee">
+                    <option value="">Select a committee</option>
+                    <option value="pr">PR</option>
+                    <option value="hr">HR</option>
+                    <option value="social-media">Social Media</option>
+                    <option value="media">Media</option>
+                    <option value="operations">Operations</option>
+                    <option value="technical">Technical</option>
+                </select>
+                <span class="error" id="committee-error">Please select a committee.</span>
+            </div>
+            <div class="form-group">
+                <button type="button" onclick="submitForm()">Register</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function submitForm() {
+            let isValid = true;
+
+            // Clear previous errors
+            document.querySelectorAll('.error').forEach(error => error.style.display = 'none');
+
+            // Validate name
+            const name = document.getElementById("student-name").value.trim();
+            if (!name) {
+                document.getElementById("name-error").style.display = "block";
+                isValid = false;
+            } else if (/\d/.test(name)) {
+                document.getElementById("name-error").textContent = "Names should not contain numbers.";
+                document.getElementById("name-error").style.display = "block";
+                isValid = false;
+            }
+
+            // Validate student ID
+            const studentId = document.getElementById("student-id").value.trim();
+            if (!studentId) {
+                document.getElementById("id-error").style.display = "block";
+                isValid = false;
+            } else if (/\D/.test(studentId)) {
+                document.getElementById("id-error").textContent = "IDs should only contain numbers.";
+                document.getElementById("id-error").style.display = "block";
+                isValid = false;
+            }
+
+            // Validate email
+            const email = document.getElementById("email").value.trim();
+            if (!email) {
+                document.getElementById("email-error").style.display = "block";
+                isValid = false;
+            }
+
+            // Validate club
+            const club = document.getElementById("club").value.trim();
+            if (!club) {
+                document.getElementById("club-error").style.display = "block";
+                isValid = false;
+            }
+
+            // Validate committee
+            const committee = document.getElementById("committee").value.trim();
+            if (!committee) {
+                document.getElementById("committee-error").style.display = "block";
+                isValid = false;
+            }
+
+            // If all fields are valid, show success alert
+            if (isValid) {
+                alert("Registration completed successfully!");
+                document.getElementById("register-form").reset();
+                window.location.href = "{% url 'student' %}";
+            }
+        }
+    </script>
+</body>
+</html>

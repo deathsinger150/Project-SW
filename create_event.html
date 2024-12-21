@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Event</title>
+    <style>
+        body {
+            background-image: url('https://th.bing.com/th/id/R.7927dfc04d54eb61b92dd9fd76515b94?rik=JtfGPOh39DJX2A&riu=http%3a%2f%2fcegman.com%2fwp-content%2fuploads%2f2020%2f05%2fDSC_0085.jpg&ehk=slOWBocMCQ%2bsZulN2CAEywCvRbKwMNVJmzEE93klMSc%3d&risl=&pid=ImgRaw&r=0');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+            width: 400px;
+            text-align: center;
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+        }
+
+        .form-container input, .form-container textarea {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .form-container button {
+            background-color: #14d1d1;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 50%;
+        }
+
+        .form-container button:hover {
+            background-color: #ffffff;
+            color: #14d1d1;
+        }
+
+        .form-container .error {
+            color: red;
+            font-size: 14px;
+            margin-top: -10px;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        .form-container .field-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+    </style>
+    <script>
+        function submitEventForm() {
+            const fields = [
+                { id: 'event_name', message: 'Event name is required.' },
+                { id: 'description', message: 'Description is required.' },
+                { id: 'location', message: 'Location is required.' },
+                { id: 'staff_list', message: 'Staff list is required.' },
+                { id: 'sponsors', message: 'Sponsors are required.' },
+                { id: 'event_date', message: 'Event date is required.' }
+            ];
+
+            let valid = true;
+
+            fields.forEach(field => {
+                const input = document.getElementById(field.id);
+                const errorElement = document.querySelector(`#${field.id}-error`);
+
+                if (!input.value.trim()) {
+                    errorElement.textContent = field.message;
+                    input.style.border = "2px solid red";
+                    valid = false;
+                } else {
+                    errorElement.textContent = "";
+                    input.style.border = "";
+                }
+            });
+
+            const eventDate = document.getElementById('event_date').value;
+            const dateErrorElement = document.getElementById('event_date-error');
+            const currentDate = new Date().toISOString().split('T')[0];
+
+            if (eventDate && eventDate < currentDate) {
+                dateErrorElement.textContent = 'Event date cannot be in the past.';
+                document.getElementById('event_date').style.border = "2px solid red";
+                valid = false;
+            } else if (eventDate) {
+                dateErrorElement.textContent = "";
+                document.getElementById('event_date').style.border = "";
+            }
+
+            if (valid) {
+                alert("Event Created Successfully!");
+                window.location.href = "{% url 'admin_dashboard' %}";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Create Event</h2>
+        <form onsubmit="event.preventDefault(); submitEventForm();" autocomplete="off">
+            <div class="field-container">
+                <input type="text" id="event_name" placeholder="Event Name">
+                <div id="event_name-error" class="error"></div>
+            </div>
+
+            <div class="field-container">
+                <textarea id="description" placeholder="Description" rows="4"></textarea>
+                <div id="description-error" class="error"></div>
+            </div>
+
+            <div class="field-container">
+                <input type="text" id="location" placeholder="Location">
+                <div id="location-error" class="error"></div>
+            </div>
+
+            <div class="field-container">
+                <input type="text" id="staff_list" placeholder="Staff List (Club Members)">
+                <div id="staff_list-error" class="error"></div>
+            </div>
+
+            <div class="field-container">
+                <input type="text" id="sponsors" placeholder="Sponsors">
+                <div id="sponsors-error" class="error"></div>
+            </div>
+
+            <div class="field-container">
+                <input type="date" id="event_date">
+                <div id="event_date-error" class="error"></div>
+            </div>
+
+            <button type="submit">Create</button>
+        </form>
+    </div>
+</body>
+</html>
