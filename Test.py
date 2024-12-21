@@ -1,55 +1,50 @@
+import os
+import django
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
 
-class LoginTestCase(TestCase):
+# Set up Django settings
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'my_project.settings')
+django.setup()
+
+class UserLoginTestCase(TestCase):
+
     @classmethod
     def setUpTestData(cls):
-        # Create users for testing
-        cls.admin_user = User.objects.create_user(username='admin_user', password='admin_pass')
+        """Set up initial data for the tests."""
+        # Create test users
+        cls.admin_user = User.objects.create_user(username='admin_user', password='admin_pass', is_staff=True)
         cls.student_user = User.objects.create_user(username='student_user', password='student_pass')
-        cls.non_admin_user = User.objects.create_user(username='non_admin', password='non_admin_pass')
-        cls.non_student_user = User.objects.create_user(username='non_student', password='non_student_pass')
-
-        # Assign groups or roles if needed
-        # Example: cls.admin_user.groups.add(Group.objects.get(name='Admin'))
+        cls.non_admin_user = User.objects.create_user(username='non_admin_user', password='non_admin_pass')
+        cls.non_student_user = User.objects.create_user(username='non_student_user', password='non_student_pass')
 
     def test_login_as_admin(self):
-        response = self.client.post(reverse('login'), {
-            'username': 'admin_user',
-            'password': 'admin_pass'
-        })
-        self.assertEqual(response.status_code, 200)  # Assuming 200 indicates success
-        self.assertContains(response, 'Admin Dashboard')  # Modify according to your app
+        """Test login functionality for an admin user."""
+        response = self.client.post(reverse('login'), {'username': 'admin_user', 'password': 'admin_pass'})
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Admin Dashboard")  # Adjust to match your app's behavior
 
     def test_login_as_student(self):
-        response = self.client.post(reverse('login'), {
-            'username': 'student_user',
-            'password': 'student_pass'
-        })
+        """Test login functionality for a student user."""
+        response = self.client.post(reverse('login'), {'username': 'student_user', 'password': 'student_pass'})
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Student Dashboard')  # Modify according to your app
+        self.assertContains(response, "Student Dashboard")  # Adjust to match your app's behavior
 
     def test_login_as_non_admin(self):
-        response = self.client.post(reverse('login'), {
-            'username': 'non_admin',
-            'password': 'non_admin_pass'
-        })
+        """Test login functionality for a non-admin user."""
+        response = self.client.post(reverse('login'), {'username': 'non_admin_user', 'password': 'non_admin_pass'})
         self.assertEqual(response.status_code, 200)
-        self.assertNotContains(response, 'Admin Dashboard')  # Ensure non-admin cannot access admin dashboard
+        self.assertContains(response, "Regular User Dashboard")  # Adjust to match your app's behavior
 
     def test_login_as_non_student(self):
-        response = self.client.post(reverse('login'), {
-            'username': 'non_student',
-            'password': 'non_student_pass'
-        })
+        """Test login functionality for a non-student user."""
+        response = self.client.post(reverse('login'), {'username': 'non_student_user', 'password': 'non_student_pass'})
         self.assertEqual(response.status_code, 200)
-        self.assertNotContains(response, 'Student Dashboard')  # Ensure non-student cannot access student dashboard
+        self.assertContains(response, "Guest Dashboard")  # Adjust to match your app's behavior
 
     def test_login_with_invalid_credentials(self):
-        response = self.client.post(reverse('login'), {
-            'username': 'invalid_user',
-            'password': 'wrong_pass'
-        })
-        self.assertEqual(response.status_code, 401)  # Assuming 401 indicates unauthorized
-        self.assertContains(response, 'Invalid credentials')  # Modify according to your app
+        """Test login functionality with invalid credentials."""
+        response = self.client.post(reverse('login'), {'username': 'invalid_user', 'password': 'wrong_pass'})
+        self.assertEqual(response.status_code, 401)  # Adjust status code to match your app's behavior
+        self.assertContains(response, "Invalid credentials")  # Adjust error message to match your app's behavior
