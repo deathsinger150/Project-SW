@@ -1,0 +1,81 @@
+<!-- First Page: Access Sessions -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Sessions</title>
+    <style>
+        body {
+            background-image: url("https://nu.edu.eg/sites/default/files/inline-images/history2.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            text-align: center;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .form-container select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-container button {
+            background-color: #0073e6;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .form-container button:hover {
+            background-color: #005bb5;
+        }
+    </style>
+    <script>
+        function navigateToSession() {
+            const club = document.getElementById('club-select').value;
+            if (club === 'RPM') {
+                window.location.href = "{% url 'rpm_sessions' %}";
+            } else if (club === 'ICPC') {
+                window.location.href = "{% url 'icpc_sessions' %}";
+            } else if (club === 'GDG') {
+                window.location.href = "{% url 'gdg_sessions' %}";
+            } else {
+                alert('Please select a club.');
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Select Club </h2>
+        <select id="club-select">
+            <option value="">-- Select a Club --</option>
+            <option value="RPM">RPM Club</option>
+            <option value="ICPC">ICPC Club</option>
+            <option value="GDG">GDG Club</option>
+        </select>
+        <button onclick="navigateToSession()">Next</button>
+    </div>
+</body>
+</html>
+
