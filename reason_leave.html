@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leave Clubs</title>
+    <style>
+        body {
+            background-image: url('https://nu.edu.eg/sites/default/files/2024-06/whatsapp_image_2024-06-25_at_1.33.17_pm.jpeg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 50px;
+            border-radius: 15px;
+            width: 60%;
+            max-width: 600px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        .form-container h1 {
+            text-align: center;
+            color: #ffffff;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #14d1d1;
+        }
+        .form-group textarea {
+            width: 100%;
+            height: 100px;
+            background-color: #bfc9c9;
+            padding: 12px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+            resize: none;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 15px;
+            background-color: #14d1d1;
+            border: none;
+            border-radius: 25px;
+            color: #ffffff;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #ffffff;
+            color: #14d1d1;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+        .back-button {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .back-button button {
+            width: 100%;
+            padding: 15px 30px;
+            background-color: #14d1d1;
+            border: none;
+            border-radius: 25px;
+            color: #ffffff;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .back-button button:hover {
+            background-color: #ffffff;
+            color: #14d1d1;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+    </style>
+    <script>
+        function showMessage() {
+            alert("Your answer is submitted and one of our HR team will contact you!!");
+            window.location.href = "{% url 'admin_dashboard' %}";
+        }
+        function goBackToAdmin() {
+            window.location.href = "{% url 'admin_dashboard' %}";
+        }
+    </script>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Leave Club</h1>
+        <form id="leave-club-form" onsubmit="showMessage(); return false;">
+            <div class="form-group">
+                <label for="reason">Reason for Leaving:</label>
+                <textarea id="reason" name="reason" placeholder="Enter your reason here..." required></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+        <div class="back-button">
+            <button onclick="goBackToAdmin()">Back to Admin Page</button>
+        </div>
+    </div>
+</body>
+</html>
