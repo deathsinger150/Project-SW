@@ -1,1 +1,124 @@
-"Placeholder content" 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Club Members</title>
+    <style>
+        body {
+            background-image: url('https://th.bing.com/th/id/R.fd2069478b3e37b1396fab12c1b30af3?rik=0kBLQzbtpto46w&pid=ImgRaw&r=0');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #1CA9C9;
+            border-radius: 5px;
+            padding: 5px 10px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            width: 100px;
+            height: 40px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .icon:hover {
+            background-color: #005bb5;
+            transform: scale(1.05);
+        }
+
+        .frame {
+            text-align: center;
+            margin: 20px 0;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+        }
+
+        .admin-tasks {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .admin-tasks button {
+            background-color: #14d1d1;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 60%;
+        }
+
+        .admin-tasks button:hover {
+            background-color: #ffffff;
+            color: #14d1d1;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="icon" onclick="location.href='test1.html'">
+        NUSC
+    </div>
+
+    <!-- Frame 1: "Manage Club Members" -->
+    <div class="frame">
+        <h1>Manage Club Members</h1>
+    </div>
+
+    <!-- Frame 2: Buttons for managing members -->
+    <div class="frame admin-tasks">
+        <button onclick="window.location.href='{% url 'accept_member' %}'">Accept New Member</button>
+        <button onclick="removeMember()">Remove Member</button>
+        <button onclick="window.location.href='{% url 'admin_dashboard' %}'">Back to Admin Page</button>
+    </div>
+
+    <script>
+        function removeMember() {
+            const studentID = prompt("Please enter the ID of the student to remove:");
+            if (studentID) {
+                alert(`Member with ID ${studentID} has been removed!`);
+                window.location.href = "{% url 'admin_dashboard' %}";
+            } else {
+                alert("No ID entered. Operation canceled.");
+                window.location.href = "{% url 'admin_dashboard' %}";
+            }
+        }
+    </script>
+</body>
+</html>

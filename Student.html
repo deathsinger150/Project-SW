@@ -1,1 +1,168 @@
-"Placeholder content" 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="test1.css">
+    <meta charset="UTF-8">
+    <script src="https://kit.fontawesome.com/1892c15c5b.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-image: url('https://nisc.nu.edu.eg/sites/nisc.nu.edu/files/2022-11/slider4.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .icon {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #1CA9C9; /* Blue background */
+            border-radius: 5px;
+            padding: 5px 15px; /* Smaller frame */
+            color: white;
+            font-weight: bold;
+            font-size: 40px; /* Increased font size */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .icon::before {
+            content: "◀"; /* Arrow head */
+            font-size: 22px; /* Same size as the text */
+            margin-right: 10px; /* Space between arrow and text */
+        }
+
+        .icon:hover {
+            background-color: #005bb5; /* Darker blue on hover */
+            transform: scale(1.05); /* Slight zoom effect */
+        }
+
+        .welcome {
+            text-align: center;
+            margin-top: 100px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .admin-tasks {
+            margin: 50px auto;
+            width: 80%;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .admin-tasks ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .admin-tasks ul li {
+            margin: 15px 0;
+            font-size: 18px;
+        }
+
+        .admin-tasks ul li a {
+            color: #14d1d1;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            background: rgba(20, 209, 209, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .admin-tasks ul li a:hover {
+            background: rgba(20, 209, 209, 0.5);
+            color: #ffffff;
+        }
+
+        .admin-tasks ul li a i {
+            margin-right: 10px;
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #ffffff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+
+        footer .socialIcons a {
+            background-color: transparent;
+        }
+
+        footer .socialIcons a:hover {
+            background-color: #14d1d1;
+        }
+
+        .highlight-name {
+            color: #14d1d1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="icon" style="display: flex; justify-content: center; align-items: center;">
+            <a href="test1.html" class="logo-link" style="text-decoration: none; display: flex; justify-content: center; align-items: center;">
+                <div style="width: 50px; height: 50px; background-color: #ffffff; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
+                    <h2 class="logo" style="margin: 0; font-size: 2rem; color: #fff; text-align: center;">NUCS</h2>
+                </div>
+            </a>
+        </div>
+    </header>
+    
+    
+
+    <main>
+        <div class="icon" onclick="location.href='test1.html'">
+            NUSC
+        </div>
+        <div class="welcome">
+            <h1>Welcome to <span class="highlight-name">NUSC</span>!</h1>
+            <p>Manage your club efficiently with these tools:</p>
+        </div>
+
+        <div class="admin-tasks">
+            <ul>
+                <li><a href="{% url 'register' %}"><i class="fa fa-users"></i> Register in Clubs</a></li>
+                <li><a href="{% url 'sessions' %}"><i class="fa fa-graduation-cap"></i> Access Sessions</a></li>
+                <li><a href="{% url 'events' %}"><i class="fa fa-calendar"></i> Participate in Events</a></li>
+                <li><a href="{% url 'achievements' %}"><i class="fa fa-star"></i> Academic Achievements</a></li>
+
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footerContainer">
+            <div class="socialIcons">
+                <a class="facebook" href="https://www.facebook.com/NileUniversity" target="_blank"> <i class="fa-brands fa-facebook"></i></a>
+                <a class="insta" href="https://www.instagram.com/nileuniversity.eg?igsh=MTN6YXVoOW94N3gzcw==" target="_blank"> <i class="fa fa-instagram"></i></a>
+                <a class="LinkedIn" href="https://www.linkedin.com/school/nile-university/" target="_blank"> <i class="fa fa-linkedin"></i></a>
+            </div>
+        </div>
+        <div class="footercontact">
+            <p class="footercontact1">NU_Clubs, Sheikh Zayed, Giza, Egypt.</p>
+            <p class="footercontact2">(+202) 38555064</p>
+            <p class="footercontact3">info@NU_Clubs.com.eg</p>
+        </div>
+        <div class="footerBottom">
+            <p>Copyrights &copy; 2024. NU_Clubs. All Rights Reserved</p>
+        </div>
+    </footer>
+</body>
+</html>

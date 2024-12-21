@@ -1,1 +1,140 @@
-"Placeholder content" 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Sessions</title>
+    <link rel="stylesheet" href="test1.css">
+    <style>
+        body {
+            background-image: url('https://smapse.com/storage/2020/05/converted/825_585_11-16.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Full viewport height */
+        }
+
+        .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #1CA9C9; /* Blue background */
+            border-radius: 5px; /* Rounded edges */
+            padding: 5px 10px; /* Smaller background padding */
+            color: white;
+            font-weight: bold;
+            font-size: 18px; /* Font size stays the same */
+            width: 100px; /* Fixed width for smaller background */
+            height: 40px; /* Fixed height for smaller background */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .icon::before {
+            content: "◀"; /* Arrow head */
+            font-size: 16px; /* Reduced arrow size */
+            margin-right: 5px; /* Reduced space between arrow and text */
+        }
+
+        .icon:hover {
+            background-color: #005bb5; /* Darker blue on hover */
+            transform: scale(1.05); /* Slight zoom effect */
+        }
+
+        .frame {
+            text-align: center;
+            margin: 20px 0;
+            background: rgba(0, 0, 0, 0.6); /* Consistent black background */
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%; /* Consistent width for all frames */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.8); /* Consistent shadow for frames */
+        }
+
+        .form-container input, .form-container textarea {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .form-container button {
+            background-color: #14d1d1;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+            width: 90%; /* Button spans same width as inputs */
+        }
+
+        .form-container button:hover {
+            background-color: #ffffff;
+            color: #14d1d1;
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="icon" onclick="location.href='test1.html'">
+        NUSC
+    </div>
+
+    <!-- Frame 1: Manage Sessions Title -->
+    <div class="frame">
+        <h1>Manage Sessions</h1>
+    </div>
+
+    <!-- Frame 2: Form to create a session -->
+    <div class="frame form-container">
+        <h2>Create a New Session</h2>
+        <form onsubmit="return submitForm()">
+            <input type="text" id="schedule" placeholder="Schedule (e.g., Date & Time)" required>
+            <input type="text" id="track" placeholder="Track (e.g., Programming, AI, etc.)" required>
+            <textarea id="description" placeholder="Description" rows="4" required></textarea>
+            <input type="text" id="materials" placeholder="Session Materials (e.g., Links, Files)" required>
+            <!-- Submit button below all inputs -->
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function submitForm() {
+            const schedule = document.getElementById('schedule').value;
+            const track = document.getElementById('track').value;
+            const description = document.getElementById('description').value;
+            const materials = document.getElementById('materials').value;
+
+            if (schedule && track && description && materials) {
+                alert(`Session Created!\n\nSchedule: ${schedule}\nTrack: ${track}\nDescription: ${description}\nMaterials: ${materials}`);
+                window.location.href = "{% url 'admin_dashboard' %}"; // Redirect to the previous page // Redirect to the previous page
+                return false; // Prevent default form submission
+            } else {
+                alert("Please fill in all fields!");
+                return false; // Prevent default form submission
+            }
+        }
+    </script>
+</body>
+</html>
