@@ -1,25 +1,23 @@
+import os
+import django
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
 
+# Set up Django settings module
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'my_project.settings')
+django.setup()
+
 class LoginTestCase(TestCase):
     @classmethod
     def setUpTestData(cls):
-        # Create users for testing
+        # Test users setup
         cls.admin_user = User.objects.create_user(username='admin_user', password='admin_pass')
         cls.student_user = User.objects.create_user(username='student_user', password='student_pass')
-        cls.non_admin_user = User.objects.create_user(username='non_admin', password='non_admin_pass')
-        cls.non_student_user = User.objects.create_user(username='non_student', password='non_student_pass')
-
-        # Assign groups or roles if needed
-        # Example: cls.admin_user.groups.add(Group.objects.get(name='Admin'))
 
     def test_login_as_admin(self):
-        response = self.client.post(reverse('login'), {
-            'username': 'admin_user',
-            'password': 'admin_pass'
-        })
-        self.assertEqual(response.status_code, 200)  # Assuming 200 indicates success
+        response = self.client.post(reverse('login'), {'username': 'admin_user', 'password': 'admin_pass'})
+        self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Admin Dashboard')  # Modify according to your app
 
     def test_login_as_student(self):
