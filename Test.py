@@ -29,7 +29,7 @@ class LoginTestCase(TestCase):
         Test login for admin user
         """
         response = self.client.post(reverse('login'), {
-            'username': 'Mohamed Hossam',
+            'username': 'Seif Kassab',
             'password': 'P@ss01451'
         })
         self.assertEqual(response.status_code, 200)  # Assuming 200 indicates success
@@ -40,7 +40,7 @@ class LoginTestCase(TestCase):
         Test login for student user
         """
         response = self.client.post(reverse('login'), {
-            'username': 'Seif Kassab',
+            'username': 'Mohamed Hossam',
             'password': 'Ardonia19#sk'
         })
         self.assertEqual(response.status_code, 200)
