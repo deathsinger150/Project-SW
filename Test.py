@@ -1,86 +1,99 @@
-import os
-import django
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
-
-# Set the settings module explicitly
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "my_project.settings")
-django.setup()  # Setup Django
 
 class LoginTestCase(TestCase):
     @classmethod
     def setUpTestData(cls):
         """
-        Set up test data that is shared across tests. 
-        This method is run only once for all tests.
+        Set up the test data.
         """
-        # Create users for testing
-        cls.admin_user = User.objects.create_user(username='Mohamed Hossam', password='P@ss01451')
-        cls.student_user = User.objects.create_user(username='Seif Kassab', password='Ardonia19#sk ')
-        cls.non_admin_user = User.objects.create_user(username='Ranim Hisham ', password='Tr19$sk20 ')
-        cls.non_student_user = User.objects.create_user(username='Farida Amr', password='Ytq71k@fa ')
+        # Create admin user
+        cls.admin_user = User.objects.create_user(
+            username='Mohamed Hossam', 
+            password='P@ss01451', 
+            email='m.hossam2241@nu.edu.eg'
+        )
+        
+        # Create student user
+        cls.student_user = User.objects.create_user(
+            username='Seif Kassab',
+            password='Ardonia19#sk',
+            email='s.Usama2251@nu.edu.eg'
+        )
 
-        # Assign groups or roles if needed
-        # Example: cls.admin_user.groups.add(Group.objects.get(name='Admin'))
+        # Create non-admin user
+        cls.non_admin_user = User.objects.create_user(
+            username='Ranim Hisham',
+            password='Tr19$sk20',
+            email='r.hisham2216@nu.edu.eg'
+        )
+
+        # Create non-student user
+        cls.non_student_user = User.objects.create_user(
+            username='Farida Amr',
+            password='Ytq71k@fa',
+            email='f.amr2237@nu.edu.eg'
+        )
+        
+        # Create a user with invalid credentials
+        cls.invalid_user = User.objects.create_user(
+            username='Karim Zaky',
+            password='Kym895!zk',
+            email='k.zaky2190@nu.edu.eg'
+        )
 
     def test_login_as_admin(self):
         """
-        Test login for admin user
-        """
-        response = self.client.post(reverse('login'), {
-            'username': 'Seif Kassab',
-            'password': 'P@ss01451'
-        })
-        self.assertEqual(response.status_code, 200)  # Assuming 200 indicates success
-        self.assertContains(response, 'Admin Dashboard')  # Modify according to your app's response
-
-    def test_login_as_student(self):
-        """
-        Test login for student user
+        Test login with valid admin credentials.
         """
         response = self.client.post(reverse('login'), {
             'username': 'Mohamed Hossam',
+            'password': 'P@ss01451'
+        })
+        self.assertEqual(response.status_code, 200)  # Expect successful login
+        self.assertContains(response, 'Admin Dashboard')  # Check for admin dashboard content
+
+    def test_login_as_student(self):
+        """
+        Test login with valid student credentials.
+        """
+        response = self.client.post(reverse('login'), {
+            'username': 'Seif Kassab',
             'password': 'Ardonia19#sk'
         })
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Student Dashboard')  # Modify according to your app's response
+        self.assertEqual(response.status_code, 200)  # Expect successful login
+        self.assertContains(response, 'Student Dashboard')  # Check for student dashboard content
 
     def test_login_as_non_admin(self):
         """
-        Test login for a non-admin user and ensure they can't access the admin dashboard
+        Test login with valid non-admin credentials.
         """
         response = self.client.post(reverse('login'), {
-            'username': 'Ranim Hisham ',
+            'username': 'Ranim Hisham',
             'password': 'Tr19$sk20'
         })
         self.assertEqual(response.status_code, 200)
-        self.assertNotContains(response, '')  # Ensure non-admin cannot access admin dashboard
+        self.assertNotContains(response, 'Admin Dashboard')  # Ensure non-admin cannot access admin dashboard
 
     def test_login_as_non_student(self):
         """
-        Test login for a non-student user and ensure they can't access the student dashboard
+        Test login with valid non-student credentials.
         """
         response = self.client.post(reverse('login'), {
-            'username': 'Farida Amr',
-            'password': 'Ytq71k@fa '
+            'username': 'Karim Zaky',
+            'password': 'Ytq71k@fa'
         })
         self.assertEqual(response.status_code, 200)
         self.assertNotContains(response, 'Student Dashboard')  # Ensure non-student cannot access student dashboard
 
     def test_login_with_invalid_credentials(self):
         """
-        Test login with invalid credentials
+        Test login with invalid credentials.
         """
         response = self.client.post(reverse('login'), {
-            'username': 'invalid_user',
-            'password': 'wrong_pass'
+            'username': 'Karim Zaky',
+            'password': 'Kym895!zk'
         })
-        self.assertEqual(response.status_code, 401)  # Assuming 401 indicates unauthorized
-        self.assertContains(response, 'Invalid credentials')  # Modify according to your app's response
-
-if __name__ == "__main__":
-    # Execute the test suite
-    from django.test import TestRunner
-    runner = TestRunner()
-    runner.run(LoginTestCase)
+        self.assertEqual(response.status_code, 401)  # Unauthorized status code for invalid credentials
+        self.assertContains(response, 'Invalid credentials')  # Ensure invalid credentials message is shown
