@@ -1,12 +1,10 @@
 import os
-import django
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
 
-# Set up Django settings and initialize apps
+# Set up Django settings
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'my_project.settings')  # Replace 'my_project.settings' with your actual settings module
-django.setup()  # Ensure Django apps are initialized before running the tests
 
 class LoginTestCase(TestCase):
     @classmethod
