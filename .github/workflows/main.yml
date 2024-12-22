@@ -9,14 +9,14 @@ on:
       - main
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Python 3.10
+      - name: Set up Python
         uses: actions/setup-python@v3
         with:
           python-version: '3.10'
@@ -27,10 +27,8 @@ jobs:
           pip install -r requirements.txt
 
       - name: Set DJANGO_SETTINGS_MODULE environment variable
-        run: echo "DJANGO_SETTINGS_MODULE=my_project.settings" >> $GITHUB_ENV  # Correct module path
+        run: echo "DJANGO_SETTINGS_MODULE=my_project.settings" >> $GITHUB_ENV
 
       - name: Run Django tests
         run: |
-          python manage.py test  # Run Django tests
-          
-
+          python Test.py test  # Run the tests
