@@ -11,16 +11,16 @@ class LoginTestCase(TestCase):
     def setUpTestData(cls):
         """Set up initial data for the tests."""
         # Create users for testing
-        cls.admin_user = User.objects.create_user(username='Seif Kassab', password='admin_pass')
-        cls.student_user = User.objects.create_user(username='student_user', password='student_pass')
-        cls.non_admin_user = User.objects.create_user(username='non_admin', password='non_admin_pass')
-        cls.non_student_user = User.objects.create_user(username='non_student', password='non_student_pass')
+        cls.admin_user = User.objects.create_user(username='Mohamed Hossam', password='P@ss01451')
+        cls.student_user = User.objects.create_user(username='Seif Kassab', password='Ardonia19#sk ')
+        cls.non_admin_user = User.objects.create_user(username='Ranim Hisham ', password='Tr19$sk20 ')
+        cls.non_student_user = User.objects.create_user(username='Farida Amr', password='Ytq71k@fa ')
 
     def test_login_as_admin(self):
         """Test login functionality for an admin user."""
         response = self.client.post(reverse('login'), {
-            'username': 'admin_user',
-            'password': 'admin_pass'
+            'username': 'Ranim Hisham',
+            'password': 'P@ss01451'
         })
         self.assertEqual(response.status_code, 200)  # Assuming 200 indicates success
         self.assertContains(response, 'Admin Dashboard')  # Replace with actual content in your app
