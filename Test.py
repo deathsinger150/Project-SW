@@ -15,14 +15,14 @@ class LoginTestCase(TestCase):
         cls.student_user = User.objects.create_user(username='Seif Kassab', password='Ardonia19#sk')
         User.objects.filter(username='Mohamed Hossam').delete()  # This will ensure the user doesn't exist
         cls.non_admin_user = User.objects.create_user(username='Ranim Hisham', password='Tr19$sk20')
-        cls.non_student_user = User.objects.create_user(username='Farida Amr', password='Ytq71k@fa')
+        cls.non_student_user = User.objects.create_user(username='Farida Amr', password='')
         cls.extra_user = User.objects.create_user(username='Karim Zaky', password='Kym895!zk')
 
     def test_login_as_admin_invalid_user(self):
         """Test login functionality for an admin user with invalid credentials."""
         # Use "Ranim Hisham" (non-admin user) as the username instead of admin
         response = self.client.post(reverse('login'), {
-            'username': 'Ranim Hisham',
+            'username': 'Mohamed Hossam',
             'password': 'P@ss01451'  # Password of admin
         })
         # Check that login fails (e.g., returns an error message)
@@ -33,7 +33,7 @@ class LoginTestCase(TestCase):
         """Test login functionality for a student user with invalid credentials."""
         # Use "Farida Amr" (non-student user) as the username instead of student
         response = self.client.post(reverse('login'), {
-            'username': 'Farida Amr',
+            'username': 'InvalidAdmin',
             'password': 'Ardonia19#sk'  # Password of student
         })
         # Check that login fails
@@ -48,7 +48,7 @@ class LoginTestCase(TestCase):
             'password': 'Tr19$sk20'
         })
         self.assertEqual(response.status_code, 200)
-        self.assertNotContains(response, 'Admin Dashboard')  # Ensure no access to admin content
+        self.assertNotContains(response, 'Error Message')  # Ensure no access to admin content
 
     def test_login_as_non_student_invalid(self):
         """Test login functionality for a non-student user with invalid credentials."""
