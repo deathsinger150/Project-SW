@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 # Set up Django settings and initialize apps
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'my_project.settings')  # Replace 'my_project.settings' with your actual settings module
-django.setup()  # Initialize Django apps to prevent AppRegistryNotReady error
+django.setup()  # Ensure Django apps are initialized before running the tests
 
 class LoginTestCase(TestCase):
     @classmethod
