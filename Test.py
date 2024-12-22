@@ -30,8 +30,8 @@ class LoginTestCase(TestCase):
         """Test login functionality for an admin user with invalid credentials."""
         # Use "Ranim Hisham" (non-admin user) as the username instead of admin
         response = self.client.post(reverse('login'), {
-            'username': 'Ranim Hisham',
-            'password': 'P@ss01451'  # Admin's password
+            'username': 'Seif Kassab',
+            'password': 'Ardonia19#sk'  # Admin's password
         })
         # Check that login fails
         self.assertEqual(response.status_code, 401)  # Adjust the status code based on your app's behavior
@@ -71,7 +71,7 @@ class LoginTestCase(TestCase):
         """Test login functionality for a non-student user with invalid credentials."""
         # Use mismatched credentials where the admin's username is paired with a non-student's password
         response = self.client.post(reverse('login'), {
-            'username': 'Mohamed Hossam',  # Admin user
+            'username': 'Farida Amr',  # Admin user
             'password': 'Ytq71k@fa'  # Password of non-student user
         })
         self.assertEqual(response.status_code, 401)  # Adjust based on your app's behavior
