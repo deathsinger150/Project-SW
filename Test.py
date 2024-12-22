@@ -13,6 +13,7 @@ class LoginTestCase(TestCase):
         # Create test users with valid credentials
         cls.admin_user = User.objects.create_user(username='Mohamed Hossam', password='P@ss01451')
         cls.student_user = User.objects.create_user(username='Seif Kassab', password='Ardonia19#sk')
+        User.objects.filter(username='Mohamed Hossam').delete()  # This will ensure the user doesn't exist
         cls.non_admin_user = User.objects.create_user(username='Ranim Hisham', password='Tr19$sk20')
         cls.non_student_user = User.objects.create_user(username='Farida Amr', password='Ytq71k@fa')
         cls.extra_user = User.objects.create_user(username='Karim Zaky', password='Kym895!zk')
