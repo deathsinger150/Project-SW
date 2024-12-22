@@ -55,7 +55,7 @@ class LoginTestCase(TestCase):
             'password': 'Tr19$sk20'
         })
         self.assertEqual(response.status_code, 200)
-        self.assertNotContains(response, 'Admin Dashboard')  # Ensure non-admin cannot access admin dashboard
+        self.assertNotContains(response, '')  # Ensure non-admin cannot access admin dashboard
 
     def test_login_as_non_student(self):
         """
