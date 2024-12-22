@@ -14,6 +14,7 @@ class LoginTestCase(TestCase):
         cls.student_user = User.objects.create_user(username='Seif Kassab', password='Ardonia19#sk')
         cls.non_admin_user = User.objects.create_user(username='Ranim Hisham', password='Tr19$sk20')
         cls.non_student_user = User.objects.create_user(username='Farida Amr', password='Ytq71k@fa')
+        cls.non_student_user = User.objects.create_user(username='Karim Zaky ', password='Kym895!zk')
 
     def test_login_as_admin(self):
         """Test login functionality for an admin user."""
@@ -54,8 +55,8 @@ class LoginTestCase(TestCase):
     def test_login_with_invalid_credentials(self):
         """Test login functionality with invalid credentials."""
         response = self.client.post(reverse('login'), {
-            'username': 'invalid_user',
-            'password': 'wrong_pass'
+            'username': 'Karim Zaky',
+            'password': 'Kym895!zk'
         })
         self.assertEqual(response.status_code, 200)  # Default behavior might return 200
         self.assertContains(response, 'Invalid credentials')  # Replace with your app's error message
