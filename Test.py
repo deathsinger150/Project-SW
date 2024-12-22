@@ -19,7 +19,7 @@ class LoginTestCase(TestCase):
     def test_login_as_admin(self):
         """Test login functionality for an admin user."""
         response = self.client.post(reverse('login'), {
-            'username': 'Ranim Hisham',
+            'username': 'Seif Kassab',
             'password': 'P@ss01451'
         })
         self.assertEqual(response.status_code, 200)  # Assuming 200 indicates success
