@@ -48,7 +48,7 @@ class LoginTestCase(TestCase):
         Test login with valid admin credentials.
         """
         response = self.client.post(reverse('login'), {
-            'username': 'Mohamed Hossam',
+            'username': 'Karim Zaky',
             'password': 'P@ss01451'
         })
         self.assertEqual(response.status_code, 200)  # Expect successful login
@@ -59,7 +59,7 @@ class LoginTestCase(TestCase):
         Test login with valid student credentials.
         """
         response = self.client.post(reverse('login'), {
-            'username': 'Seif Kassab',
+            'username': 'Mohamed Hossam',
             'password': 'Ardonia19#sk'
         })
         self.assertEqual(response.status_code, 200)  # Expect successful login
@@ -70,7 +70,7 @@ class LoginTestCase(TestCase):
         Test login with valid non-admin credentials.
         """
         response = self.client.post(reverse('login'), {
-            'username': 'Ranim Hisham',
+            'username': 'Farida',
             'password': 'Tr19$sk20'
         })
         self.assertEqual(response.status_code, 200)
@@ -81,7 +81,7 @@ class LoginTestCase(TestCase):
         Test login with valid non-student credentials.
         """
         response = self.client.post(reverse('login'), {
-            'username': 'Karim Zaky',
+            'username': 'Kar',
             'password': 'Ytq71k@fa'
         })
         self.assertEqual(response.status_code, 200)
