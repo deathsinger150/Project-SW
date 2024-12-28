@@ -11,6 +11,19 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_DATABASE: ClubManagementSystem
+          MYSQL_ROOT_PASSWORD: don895sk
+        ports: 
+        - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost "
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
 
     steps:
       - name: Checkout code
