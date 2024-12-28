@@ -84,8 +84,14 @@ WSGI_APPLICATION = 'my_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',  # Use SQLite as the engine
-        'NAME': BASE_DIR / 'db.sqlite3',  # Use the existing SQLite database file
+        #'ENGINE': 'django.db.backends.sqlite3',  # Use SQLite as the engine
+        #'NAME': BASE_DIR / 'db.sqlite3',  # Use the existing SQLite database file
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ClubManagementSystem',
+        'USER': 'root',
+        'PASSWORD': 'don895sk',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
