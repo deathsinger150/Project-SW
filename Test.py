@@ -11,14 +11,14 @@ class LoginTestCase(TestCase):
         # Create admin user
         cls.admin_user = User.objects.create_user(
             username='Mohamed Hossam', 
-            password='P@ss01451', 
+            password='Ardonia19#sk', 
             email='m.hossam2241@nu.edu.eg'
         )
         
         # Create student user
         cls.student_user = User.objects.create_user(
             username='Seif Kassab',
-            password='Ardonia19#sk',
+            password='P@ss01451',
             email='s.Usama2251@nu.edu.eg'
         )
 
