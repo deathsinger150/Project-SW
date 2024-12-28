@@ -41,7 +41,7 @@ jobs:
           
       - name: Run migrations
         run: |
-          source env/Scripts/activate
+          source venv/Scripts/activate
           python manage.py makemigrations
           python manage.py migrate
 
