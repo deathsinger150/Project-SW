@@ -112,6 +112,25 @@
         .highlight-name {
             color: #14d1d1;
         }
+
+        .notifications {
+            margin: 20px auto;
+            width: 80%;
+            background: rgba(20, 209, 209, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(20, 209, 209, 0.5);
+        }
+
+        .notifications h3 {
+            margin: 0;
+            padding: 0 0 10px 0;
+            border-bottom: 1px solid #14d1d1;
+        }
+
+        .notifications p {
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
@@ -124,8 +143,6 @@
             </a>
         </div>
     </header>
-    
-    
 
     <main>
         <div class="icon" onclick="location.href='test1.html'">
@@ -136,13 +153,21 @@
             <p>Manage your club efficiently with these tools:</p>
         </div>
 
+        <div class="notifications">
+            <h3>Notifications</h3>
+            {% for notification in notifications %}
+                <p>{{ notification.message }}</p>
+            {% empty %}
+                <p>No new notifications.</p>
+            {% endfor %}
+        </div>
+
         <div class="admin-tasks">
             <ul>
                 <li><a href="{% url 'register' %}"><i class="fa fa-users"></i> Register in Clubs</a></li>
                 <li><a href="{% url 'sessions' %}"><i class="fa fa-graduation-cap"></i> Access Sessions</a></li>
                 <li><a href="{% url 'events' %}"><i class="fa fa-calendar"></i> Participate in Events</a></li>
                 <li><a href="{% url 'achievements' %}"><i class="fa fa-star"></i> Academic Achievements</a></li>
-
             </ul>
         </div>
     </main>
